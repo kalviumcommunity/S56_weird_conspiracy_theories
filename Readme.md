@@ -11,3 +11,4 @@ This repository contains a curated list of weird conspiracy theories from around
 - Users can give votes to different 
 
 
+Link for the deployed render website: 
