@@ -9,6 +9,10 @@ app.get('/ping', (req, res) => {
 app.use((req, res) => {
   res.status(404).send("Route Not FOund!!!");
 });
+
+app.get('/', (req, res) => {
+  res.send('welcome to my new server!');
+});
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
