@@ -1,12 +1,24 @@
 const express = require('express');
 const app = express();
 const port = process.env.PUBLIC_PORT || 3001;
+const { connectDB, mongooseConnect } = require('./db')
+connectDB()
 
-app.get('/', (req, res) => {
-  res.send('welcome to my new server!');
+
+app.get('/', async (req, res) => {
+  try {
+    const connectionStatus = await mongooseConnect();
+    if (connectionStatus) {
+      res.send('Connected to mongoDB!');
+    }
+  } 
+  catch (err) {
+    res.status(500).send('Failed to connect to mongoDB!');
+  }
 });
+
 app.get('/ping', (req, res) => {
-  res.send('helllooo worlddd!');
+  res.send('helllooo worlddd(ping route)!');
 });
 
 app.use((req, res, next) => {
