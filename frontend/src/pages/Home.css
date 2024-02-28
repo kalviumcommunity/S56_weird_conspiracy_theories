@@ -1,0 +1,29 @@
+
+.home-container {
+    /* max-width: 800px; */
+    margin: 20px auto;
+    padding: 50px 20px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    /* background-color: beige; */
+  }
+  
+  .home-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .home-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  .exp{
+    color: #ff0000;
+  }
+  
+  
+  
+
+  
