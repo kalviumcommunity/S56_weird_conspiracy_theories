@@ -1,3 +1,4 @@
+Link for the deployed render website: https://weird-conspiracy-theories.onrender.com/
 # List of Weird Conspiracy Theories
 
 ## Description
@@ -9,5 +10,4 @@ This repository contains a curated list of weird conspiracy theories from around
 - Description of each theory is mentioned.
 - Users can add or request to delete any theory.
 - Users can give votes to different 
-
 
