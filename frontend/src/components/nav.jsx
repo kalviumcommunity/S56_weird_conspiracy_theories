@@ -1,7 +1,8 @@
 
 import React from 'react';
 import logo from "../assets/logo.png";
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material/Button';
+import { TextField } from '@mui/material/TextField';
 import "./nav.css";
 
 const Nav = () => {
