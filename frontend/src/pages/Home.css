@@ -1,12 +1,10 @@
 
 .home-container {
-    /* max-width: 800px; */
     margin: 20px auto;
     padding: 50px 20px;
     color: black;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    /* background-color: beige; */
   }
   
   .home-container h1 {
@@ -69,3 +67,7 @@
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
   
+.theory{
+  display: flex;
+  flex-wrap: wrap;
+}
