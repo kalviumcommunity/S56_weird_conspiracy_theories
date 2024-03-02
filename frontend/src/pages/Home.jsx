@@ -26,6 +26,13 @@ const Home = () => {
         img="https://imgs.search.brave.com/WafbvZGPkLWtR1UnWIuuZQLPvs3ueb0lIYILLtBC5LU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzA1LzU4Lzk0/LzM2MF9GXzEwNTU4/OTQ2N19USVJCd1hI/Y0laWnQyY0RtMlhm/Vk83YVdLRk9VQldt/Vi5qcGc
         "
       />  
+      <Card
+        theory="Flat Earth Theory"
+        description="Belief that the Earth is flat rather than an oblate spheroid, despite scientific evidence proving otherwise."
+        source="Scientific research, historical evidence"
+        img="https://imgs.search.brave.com/ViAFowx9d2YnmY9wcX2ZssbvLicE3yt1NYD5qX_d2aA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zb3Rw/Lm55YzMuY2RuLmRp/Z2l0YWxvY2VhbnNw/YWNlcy5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMTgvMDEv/RmxhdF9lYXJ0aC02/Mzd4NDc4LnBuZw"
+      />  
+      
       </div>
       
     </div>
