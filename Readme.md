@@ -1,4 +1,7 @@
 Link for the deployed render website: https://weird-conspiracy-theories.onrender.com/
+
+Link for Front-End Deploy: https://s56-weird-conspiracy-theory.netlify.app/
+
 # List of Weird Conspiracy Theories
 
 ## Description
