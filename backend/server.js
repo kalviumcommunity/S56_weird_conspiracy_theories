@@ -24,6 +24,10 @@ app.get('/ping', (req, res) => {
   res.send('helllooo worlddd(ping route)!');
 });
 
+app.post("/adddata",(req, res) => {
+  UserModel.create(req.body).then((el) => res.json(el))
+  .catch(err => res.json(err));
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
