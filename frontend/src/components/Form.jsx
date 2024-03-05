@@ -3,16 +3,21 @@ import axios from "axios";
 import "./form.css";
 
 const Form = () => {
-  const [theory, setTheory] = useState("");
+  const [conspiracy_theory, setConspiracyTheory] = useState("");
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
-  const [link, setLink] = useState("");
+  const [reference_images, setReferenceImages] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
     axios
-      .post("https://weird-conspiracy-theories.onrender.com/adddata", { theory, description, source, link })
+      .post("https://weird-conspiracy-theories.onrender.com/adddata", {
+        conspiracy_theory: conspiracy_theory,
+        description,
+        source,
+        reference_images: reference_images
+      })
       .then((response) => {
         console.log("Form submitted successfully:", response.data);
         
@@ -26,15 +31,15 @@ const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="theory">
-          Theory:
+        <label htmlFor="conspiracyTheory">
+          Conspiracy Theory:
           <input
             type="text"
-            id="theory"
-            name="theory"
-            placeholder="Enter theory name"
-            value={theory}
-            onChange={(e) => setTheory(e.target.value)}
+            id="conspiracyTheory"
+            name="conspiracyTheory"
+            placeholder="Enter conspiracy theory name"
+            value={conspiracy_theory}
+            onChange={(e) => setConspiracyTheory(e.target.value)}
           />
         </label>
         <label htmlFor="description">
@@ -59,15 +64,15 @@ const Form = () => {
             onChange={(e) => setSource(e.target.value)}
           />
         </label>
-        <label htmlFor="link">
-          Link:
+        <label htmlFor="referenceImages">
+          Reference Images:
           <input
             type="text"
-            id="link"
-            name="link"
-            placeholder="Enter your contact number"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
+            id="referenceImages"
+            name="referenceImages"
+            placeholder="Enter reference images URL"
+            value={reference_images}
+            onChange={(e) => setReferenceImages(e.target.value)}
           />
         </label>
         <button type="submit" className="btn">Submit</button>
