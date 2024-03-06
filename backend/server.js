@@ -26,7 +26,7 @@ app.get('/ping', (req, res) => {
   res.send('helllooo worlddd(ping route)!');
 });
 
-app.post("/adddata",(req, res) => {
+app.post("/createUser",(req, res) => {
   UserModel.create(req.body).then((el) => res.json(el))
   .catch(err => res.json(err));
 });

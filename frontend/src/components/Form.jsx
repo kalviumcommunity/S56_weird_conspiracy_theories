@@ -5,33 +5,32 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Form = () => {
-  const [conspiracy_theory, setConspiracyTheory] = useState("");
-  const [description, setDescription] = useState("");
-  const [source, setSource] = useState("");
-  const [reference_images, setReferenceImages] = useState("");
-  const navigate = useNavigate()
+  const [conspiracy_theory, setConspiracyTheory] = useState();
+  const [description, setDescription] = useState();
+  const [source, setSource] = useState();
+  const [reference_images, setReferenceImages] = useState();
+  // const navigate = useNavigate()
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
     axios
-      .post("https://weird-conspiracy-theories.onrender.com/adddata", {
+      .post("https://weird-conspiracy-theories.onrender.com/createUser", {
         conspiracy_theory,
         description,
         source,
         reference_images
       })
-      .then((response) => {
+      .then(response => {
         console.log("Form submitted successfully:", response.data);
-        navigate('/')
-        
+        // navigate('/')
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
-        
       });
   };
+  
 
   return (
     <div>
