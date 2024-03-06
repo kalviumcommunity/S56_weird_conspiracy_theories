@@ -5,9 +5,9 @@ router.get('/get', (req, res) => {
   res.json('GET request');
 });
 
-router.post('/post', (req, res) => { 
-  res.json('POST request');
-});
+// router.post('/post', (req, res) => { 
+//   res.json('POST request');
+// });
 
 router.get('/getuser', async(req, res) => {
   let result = await consModel.find({});
@@ -23,6 +23,7 @@ router.delete('/delete', (req, res) => {
 });
 
 // error handling for 404 requests.
+
 
 router.use((req, res) => {
   res.status(404).json('404 Not Found');
