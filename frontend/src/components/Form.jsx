@@ -1,31 +1,28 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./form.css";
-import { useNavigate } from 'react-router-dom'
-
 
 const Form = () => {
-  const [conspiracy_theory, setConspiracyTheory] = useState("");
+  const [conspiracyTheory, setConspiracyTheory] = useState("");
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
-  const [reference_images, setReferenceImages] = useState("");
-  const navigate = useNavigate()
-  
+  const [referenceImages, setReferenceImages] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     axios
-      .post("https://weird-conspiracy-theories.onrender.com/adddata", {
-        conspiracy_theory,
+      .post("https://weird-conspiracy-theories.onrender.com/createUser", {
+        conspiracy_theory: conspiracyTheory,
         description,
         source,
-        reference_images
+        reference_images: referenceImages
       })
-      .then((response) => {
+      .then(response => {
         console.log("Form submitted successfully:", response.data);
-        navigate('/')
-        
+        setConspiracyTheory("");
+        setDescription("");
+        setSource("");
+        setReferenceImages("");
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
@@ -43,7 +40,7 @@ const Form = () => {
             id="conspiracyTheory"
             name="conspiracyTheory"
             placeholder="Enter conspiracy theory name"
-            value={conspiracy_theory}
+            value={conspiracyTheory}
             onChange={(e) => setConspiracyTheory(e.target.value)}
           />
         </label>
@@ -76,7 +73,7 @@ const Form = () => {
             id="referenceImages"
             name="referenceImages"
             placeholder="Enter reference images URL"
-            value={reference_images}
+            value={referenceImages}
             onChange={(e) => setReferenceImages(e.target.value)}
           />
         </label>

@@ -4,8 +4,9 @@ const {router} = require('./routes/routes');
 const port = process.env.PUBLIC_PORT || 3001;
 const { connectDB, mongooseConnect } = require('./db')
 const cors=require('cors');
-const UserModel = require("./models/user");
+const {consModel} = require("./models/user");
 
+app.use(express.json());
 app.use(cors());
 connectDB()
 
@@ -26,10 +27,16 @@ app.get('/ping', (req, res) => {
   res.send('helllooo worlddd(ping route)!');
 });
 
-app.post("/adddata",(req, res) => {
-  UserModel.create(req.body).then((el) => res.json(el))
-  .catch(err => res.json(err));
-});
+app.post("/createUser",async(req, res) => {
+  try {
+    console.log(req.body)
+    const user = new consModel(req.body);
+    await user.save();
+    res.send(user);
+  } 
+  catch (err) {
+    res.status(500).send(err);
+}});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
