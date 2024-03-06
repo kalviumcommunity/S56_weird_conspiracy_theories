@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axios from "axios";
 import "./form.css";
+import { useNavigate } from 'react-router-dom'
+
 
 const Form = () => {
   const [conspiracy_theory, setConspiracyTheory] = useState("");
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
   const [reference_images, setReferenceImages] = useState("");
+  const navigate = useNavigate()
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
     axios
       .post("https://weird-conspiracy-theories.onrender.com/adddata", {
-        conspiracy_theory: conspiracy_theory,
+        conspiracy_theory,
         description,
         source,
-        reference_images: reference_images
+        reference_images
       })
       .then((response) => {
         console.log("Form submitted successfully:", response.data);
+        navigate('/')
         
       })
       .catch((error) => {

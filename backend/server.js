@@ -4,6 +4,8 @@ const {router} = require('./routes/routes');
 const port = process.env.PUBLIC_PORT || 3001;
 const { connectDB, mongooseConnect } = require('./db')
 const cors=require('cors');
+const UserModel = require("./models/user");
+
 app.use(cors());
 connectDB()
 
