@@ -5,9 +5,7 @@ router.get('/get', (req, res) => {
   res.json('GET request');
 });
 
-// router.post('/post', (req, res) => { 
-//   res.json('POST request');
-// });
+
 
 router.get('/getuser', async(req, res) => {
   let result = await consModel.find({});
