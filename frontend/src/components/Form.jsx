@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./form.css";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [conspiracyTheory, setConspiracyTheory] = useState("");
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
   const [referenceImages, setReferenceImages] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +24,10 @@ const Form = () => {
         setConspiracyTheory("");
         setDescription("");
         setSource("");
+
         setReferenceImages("");
+        navigate("/");
+
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
