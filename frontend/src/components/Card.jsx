@@ -1,6 +1,7 @@
 import React from 'react';
 import "./card.css";
-const Card = ({ theory, description, source, img }) => {
+import { Link } from 'react-router-dom';
+const Card = ({ theory, description, source, img,id }) => {
     if (!theory || !description || !source || !img) {
         return <div className="error">Missing props for the component.</div>;
       }
@@ -10,6 +11,11 @@ const Card = ({ theory, description, source, img }) => {
       <p><strong>Description:</strong> {description}</p>
       <p><strong>Source:</strong> {source}</p>
       <img src={img} alt="Reference Image" />
+      <div className="button">
+        
+        <Link to={`/update/${id}`} ><button>UPDATE</button> </Link>
+        <button>DELETE</button>
+      </div>
     </div>
   );
 }
