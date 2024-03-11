@@ -12,12 +12,55 @@ router.get('/getuser', async(req, res) => {
   res.send(result)
  
 });
-router.put('/put', (req, res) => {
-  res.json('PUT request');
+router.post("/createUser", async (req, res) => {
+  try {
+    console.log(req.body);
+    const user = new consModel(req.body);
+    await user.save();
+    res.send(user);
+  } catch (err) {
+    res.status(500).send(err);
+    console.log(err);
+  }
+});
+// get data by id
+router.get("/getdata/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+  let result = await consModel.findById({_id:id})
+  res.json(result);
+  } catch (error) {
+    res.json(error)
+  }
+  
+   
 });
 
-router.delete('/delete', (req, res) => { 
-  res.json('DELETE request');
+// update
+router.put("/updatedata/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedDoc = await consModel.findByIdAndUpdate(id, {
+      conspiracy_theory: req.body.conspiracy_theory,
+      description: req.body.description,
+      source: req.body.source,
+      reference_images: req.body.reference_images,
+    });
+    res.json(updatedDoc);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// delete
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await consModel.findByIdAndDelete({_id:id});
+    res.json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 // error handling for 404 requests.
