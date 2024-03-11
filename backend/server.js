@@ -36,6 +36,7 @@ app.post("/createUser", async (req, res) => {
     console.log(err);
   }
 });
+// get data by id
 app.get("/getdata/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -45,10 +46,10 @@ app.get("/getdata/:id", async (req, res) => {
     res.json(error)
   }
   
-    // .then((data) => res.json(data))
-    // .catch((err) => res.json(err));
+   
 });
 
+// update
 app.put("/updatedata/:id", (req, res) => {
   const id = req.params.id;
   consModel
@@ -62,6 +63,13 @@ app.put("/updatedata/:id", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
+// delete
+app.delete("/delete/:id", (req, res) => {
+  const id =req.params.id;
+  consModel.findByIdAndDelete({_id:id})
+  .then((result) => res.json(result))
+  .catch((err) => res.status(500).json(err))
+})
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

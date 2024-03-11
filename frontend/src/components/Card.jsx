@@ -1,9 +1,19 @@
 import React from 'react';
 import "./card.css";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 const Card = ({ theory, description, source, img,id }) => {
     if (!theory || !description || !source || !img) {
         return <div className="error">Missing props for the component.</div>;
+      }
+      const handleDelete = (id) => {
+      axios.delete("https://weird-conspiracy-theories.onrender.com/delete/"+id)
+      .then(res=>{console.log(res)
+      window.location.reload();
+      }
+      
+      )
+      .catch(err => console.log(err))
       }
   return (
     <div className="card">
@@ -14,7 +24,7 @@ const Card = ({ theory, description, source, img,id }) => {
       <div className="button">
         
         <Link to={`/update/${id}`} ><button>UPDATE</button> </Link>
-        <button>DELETE</button>
+        <button onClick={(e)=>handleDelete(id)}>DELETE</button>
       </div>
     </div>
   );
