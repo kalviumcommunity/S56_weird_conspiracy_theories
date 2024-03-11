@@ -40,6 +40,7 @@ const Home = () => {
               description={theory.description}
               source={theory.source}
               img={theory.reference_images}
+              id={theory._id}
             />
           ))}
         </div>
