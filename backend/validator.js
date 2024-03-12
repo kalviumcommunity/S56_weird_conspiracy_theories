@@ -3,7 +3,7 @@ const Joi = require("joi")
 const validator =(schema)=>(payload)=> schema.validate(payload,{abortEarly:false})
 
 const Schema = Joi.object({
-    conspiracy_theory:Joi.string().required(),
+    conspiracy_theory:Joi.number().required(),
     description:Joi.string().required(),
     source:Joi.string().required(),
     reference_images:Joi.string().required()

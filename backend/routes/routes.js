@@ -20,7 +20,7 @@ router.post("/createUser", async (req, res) => {
     // adding validation
     const { error } = validateEntry(req.body);
     if (error) {
-      return res.send(error);
+      return res.status(400).send(error.details);
     }else{
       console.log(req.body);
       const user = new consModel(req.body);
