@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { validateEntry } = require("../validator.js")
+
 const { consModel } = require('../models/user.js');
 router.get('/get', (req, res) => {  
   res.json('GET request');
@@ -12,12 +14,19 @@ router.get('/getuser', async(req, res) => {
   res.send(result)
  
 });
+// post
 router.post("/createUser", async (req, res) => {
   try {
-    console.log(req.body);
-    const user = new consModel(req.body);
-    await user.save();
-    res.send(user);
+    // adding validation
+    const { error } = validateEntry(req.body);
+    if (error) {
+      return res.status(400).send(error.details);
+    }else{
+      console.log(req.body);
+      const user = new consModel(req.body);
+      await user.save();
+      res.send(user);
+    }
   } catch (err) {
     res.status(500).send(err);
     console.log(err);

@@ -6,6 +6,7 @@ const { connectDB, mongooseConnect } = require("./db");
 const cors = require("cors");
 const { consModel } = require("./models/user");
 
+
 app.use(express.json());
 app.use(cors());
 connectDB();
