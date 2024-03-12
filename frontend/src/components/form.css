@@ -10,7 +10,7 @@ label {
   margin-bottom: 15px;
 }
 
-input[type="text"] {
+ .input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;

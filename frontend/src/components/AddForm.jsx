@@ -42,6 +42,7 @@ const Form = () => {
           Conspiracy Theory:
           <input
             type="text"
+            className="input"
             id="conspiracyTheory"
             name="conspiracyTheory"
             placeholder="Enter conspiracy theory name"
@@ -53,6 +54,7 @@ const Form = () => {
           Description:
           <input
             type="text"
+            className="input"
             id="description"
             name="description"
             placeholder="Write description here"
@@ -64,6 +66,7 @@ const Form = () => {
           Source:
           <input
             type="text"
+            className="input"
             id="source"
             name="source"
             placeholder="Write Source here"
@@ -75,6 +78,7 @@ const Form = () => {
           Reference Images:
           <input
             type="text"
+            className="input"
             id="referenceImages"
             name="referenceImages"
             placeholder="Enter reference images URL"
