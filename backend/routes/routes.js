@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { validateEntry } = require("../validator.js")
+const jwr = require('jsonwebtoken');
+require("dotenv").config()
+
 
 const { consModel } = require('../models/user.js');
 router.get('/get', (req, res) => {  
@@ -32,6 +35,15 @@ router.post("/createUser", async (req, res) => {
     console.log(err);
   }
 });
+
+// auth post req
+router.post('/auth', (req, res) => {
+  let data=req.body;
+  console.log(data);
+  let token=jwt.sign({user:data.username},process.env.secretKey);
+  res.send(token);
+});
+
 // get data by id
 router.get("/getdata/:id", async (req, res) => {
   try {
@@ -78,4 +90,5 @@ router.delete("/delete/:id", async (req, res) => {
 router.use((req, res) => {
   res.status(404).json('404 Not Found');
 });
+
 module.exports = {router};
