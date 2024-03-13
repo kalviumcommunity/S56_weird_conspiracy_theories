@@ -40,7 +40,7 @@ router.post("/createUser", async (req, res) => {
 router.post('/auth', (req, res) => {
   let {username}=req.body;
   console.log(username);
-  let token=jwt.sign({user:data.username},process.env.secretKey);
+  let token=jwt.sign({user:username.username},process.env.secretKey);
   console.log(token);
   res.send(token);
 });
