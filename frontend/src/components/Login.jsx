@@ -18,20 +18,18 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    
-    document.cookie = `username=${username}`;
-    document.cookie = `password=${password}`;
-    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username: username, password: password})
-    .then((response) => {
-      document.cookie = `token=${response.data}`;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    navigate('/');
-    
+    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username: username})
+      .then((response) => {
+        // Save token in cookie
+        const token = response.data;
+        document.cookie = `token=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC path=/`;
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
+  
   return (
     <div className="login-container">
       <h2>Login</h2>

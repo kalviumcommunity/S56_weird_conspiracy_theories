@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { validateEntry } = require("../validator.js")
-const jwr = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 require("dotenv").config()
 
 
@@ -38,9 +38,10 @@ router.post("/createUser", async (req, res) => {
 
 // auth post req
 router.post('/auth', (req, res) => {
-  let data=req.body;
-  console.log(data);
+  let {username}=req.body;
+  console.log(username);
   let token=jwt.sign({user:data.username},process.env.secretKey);
+  console.log(token);
   res.send(token);
 });
 
