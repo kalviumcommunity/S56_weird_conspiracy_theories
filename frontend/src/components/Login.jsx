@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
@@ -18,11 +17,11 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username: username})
+    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
       .then((response) => {
-        // Save token in cookie
-        const token = response.data;
-        document.cookie = `token=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC path=/`;
+        const { token } = response.data;
+        document.cookie = `token=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
+        document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         navigate('/');
       })
       .catch((err) => {

@@ -39,12 +39,11 @@ router.post("/createUser", async (req, res) => {
 // auth post req
 router.post('/auth', (req, res) => {
   let {username}=req.body;
-  console.log(username);
-  let token=jwt.sign({user:username.username},process.env.secretKey);
-  console.log(token);
+  console.log(username)
+  let token=jwt.sign({username:username},process.env.secretKey);
   res.send(token);
 });
-
+console.log(process.env.secretKey);
 // get data by id
 router.get("/getdata/:id", async (req, res) => {
   try {
