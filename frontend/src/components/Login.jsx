@@ -1,7 +1,7 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,13 +17,17 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    
-    document.cookie = `username=${username}`;
-    document.cookie = `password=${password}`;
-    navigate('/');
-    
+    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
+      .then((response) => {
+        document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
+        document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
+  
   return (
     <div className="login-container">
       <h2>Login</h2>

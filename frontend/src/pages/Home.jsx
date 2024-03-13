@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Home.css';
 import Card from '../components/Card';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [theories, setTheories] = useState([]);
   const [cards, setCards] = useState(false);
-  const isLoggedIn = document.cookie.includes('username'); // Check if user is logged in
+  const isLoggedIn = document.cookie.includes('username'); 
 
   useEffect(() => {
     fetch('https://weird-conspiracy-theories.onrender.com/getuser')
@@ -29,12 +28,10 @@ const Home = () => {
       <p>Explore the mysterious and bizarre world of conspiracy theories. From ancient aliens to government cover-ups, dive into the rabbit hole of unexplained phenomena and secret agendas.</p>
       <p>Join our community to discuss, debate, and share your own theories about the unknown.</p>
       <p>Remember, the truth is out there... or is it?</p>
-      {isLoggedIn ? (
+      {isLoggedIn && ( 
         <button className="button-55" role="button" onClick={handleClick}>Explore Now</button>
-      ) : (
-        <Link to="/login" className="button-55">Explore Now</Link>
       )}
-      {cards && (
+      {cards && isLoggedIn && ( 
         <div className="theory">
           {theories.map((theory, index) => (
             <Card
