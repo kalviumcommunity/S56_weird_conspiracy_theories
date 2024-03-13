@@ -19,8 +19,7 @@ const Login = () => {
   const handleLogin = () => {
     axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
       .then((response) => {
-        const { token } = response.data;
-        document.cookie = `token=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
+        document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         navigate('/');
       })
