@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Card from '../components/Card';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [theories, setTheories] = useState([]);
-  const [cards, setCards] = useState(false); 
+  const [cards, setCards] = useState(false);
+  const isLoggedIn = document.cookie.includes('username'); // Check if user is logged in
 
   useEffect(() => {
-   
     fetch('https://weird-conspiracy-theories.onrender.com/getuser')
       .then(response => response.json())
       .then(data => {
-        
         setTheories(data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []); 
+  }, []);
 
   const handleClick = () => {
-    setCards(true); 
+    setCards(true);
   };
 
   return (
@@ -29,13 +29,16 @@ const Home = () => {
       <p>Explore the mysterious and bizarre world of conspiracy theories. From ancient aliens to government cover-ups, dive into the rabbit hole of unexplained phenomena and secret agendas.</p>
       <p>Join our community to discuss, debate, and share your own theories about the unknown.</p>
       <p>Remember, the truth is out there... or is it?</p>
-      <button className="button-55" role="button" onClick={handleClick}>Explore Now</button>  
-      {cards && ( 
+      {isLoggedIn ? (
+        <button className="button-55" role="button" onClick={handleClick}>Explore Now</button>
+      ) : (
+        <Link to="/login" className="button-55">Explore Now</Link>
+      )}
+      {cards && (
         <div className="theory">
-          
           {theories.map((theory, index) => (
             <Card
-              key={index} 
+              key={index}
               theory={theory.conspiracy_theory}
               description={theory.description}
               source={theory.source}
