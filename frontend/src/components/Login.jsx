@@ -2,11 +2,14 @@ import { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const usernameCookie = Cookies.get('username');
+
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -28,6 +31,16 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
       });
+
+      axios.post("https://weird-conspiracy-theories.onrender.com/addUser",{
+        username:usernameCookie
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => { 
+        console.log(err);
+      } );
   };
   
   return (
