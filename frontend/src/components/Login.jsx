@@ -7,7 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
   useEffect(() => {
     axios
       .get("https://weird-conspiracy-theories.onrender.com/userinfo")
