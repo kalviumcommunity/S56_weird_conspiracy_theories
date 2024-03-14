@@ -5,7 +5,6 @@ import Form from './pages/FormPage';
 import Home from './pages/Home';
 import UpdatePage from './pages/UpdatePage';
 import LoginPage from './pages/LoginPage';
-import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const [selectedUser, setSelectedUser] = useState('All');
@@ -16,7 +15,6 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer />
       <Nav onSelectUser={handleUserSelect} />
       
       <Routes>

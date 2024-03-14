@@ -15,7 +15,7 @@ const Nav = ({ onSelectUser }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://weird-conspiracy-theories.onrender.com/getuser');
+        const response = await fetch('https://weird-conspiracy-theories.onrender.com/userinfo');
         const data = await response.json();
         
         const uniqueNames = ['All', ...new Set(data.map(user => user.created_by))];

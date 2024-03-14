@@ -40,22 +40,26 @@ const Home = ({ selectedUser }) => {
 
       {loading ? (
         <div className="loader-container">
-        <Loader type={"bars"} color={"#000000"}/>
+          <Loader type={"bars"} color={"#000000"}/>
         </div>
       ) : (
-        cards && isLoggedIn && ( 
-          <div className="theory">
-            {theories.map((theory, index) => (
-              <Card
-                key={index}
-                theory={theory.conspiracy_theory}
-                description={theory.description}
-                source={theory.source}
-                img={theory.reference_images}
-                id={theory._id}
-              />
-            ))}
-          </div>
+        theories.length === 0 ? (
+          <p>No theories to display.</p>
+        ) : (
+          cards && isLoggedIn && ( 
+            <div className="theory">
+              {theories.map((theory, index) => (
+                <Card
+                  key={index}
+                  theory={theory.conspiracy_theory}
+                  description={theory.description}
+                  source={theory.source}
+                  img={theory.reference_images}
+                  id={theory._id}
+                />
+              ))}
+            </div>
+          )
         )
       )}
     </div>
