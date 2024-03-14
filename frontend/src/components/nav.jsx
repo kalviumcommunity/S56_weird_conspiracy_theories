@@ -16,7 +16,7 @@ const Nav = () => {
       try {
         const response = await fetch('https://weird-conspiracy-theories.onrender.com/getuser');
         const data = await response.json();
-        // Extract unique names from the "created_by" field
+        
         const uniqueNames = ['All', ...new Set(data.map(user => user.created_by))];
         setSuggestions(uniqueNames);
       } catch (error) {

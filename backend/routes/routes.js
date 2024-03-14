@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { validateEntry } = require("../validator.js")
 const jwt = require('jsonwebtoken');
-const {UserModel} = require("../User.js")
 
 require("dotenv").config()
 
 
-const { consModel } = require('../models/user.js');
+const { consModel, UserModel } = require('../models/user.js');
 router.get('/get', (req, res) => {  
   res.json('GET request');
 });
