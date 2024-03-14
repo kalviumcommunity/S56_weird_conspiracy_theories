@@ -15,6 +15,14 @@ router.get('/getuser', async(req, res) => {
   res.send(result)
  
 });
+router.get("/userinfo",async(req,res)=>{
+  try {
+      const data = await UserDetail.find({});
+      res.json(data);
+  } catch (err) {
+      res.status(500).json({ error: err });
+  }
+})
 // post
 router.post("/createUser", async (req, res) => {
   try {
