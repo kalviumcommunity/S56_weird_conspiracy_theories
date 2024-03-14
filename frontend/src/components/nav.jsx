@@ -6,8 +6,9 @@ import MenuItem from '@mui/material/MenuItem';
 import "./nav.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ onSelectUser }) => {
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('All');
   const isLoggedIn = document.cookie.includes('username');
   const navigate = useNavigate();
 
@@ -33,6 +34,12 @@ const Nav = () => {
     navigate('/');
   };
 
+  const handleUserSelect = (event) => {
+    const user = event.target.value;
+    setSelectedUser(user);
+    onSelectUser(user);
+  };
+
   return (
     <div className="nav-container">
       <Link to={"/"}><img src={logo} alt="Logo" className="nav-logo" /></Link>
@@ -43,6 +50,8 @@ const Nav = () => {
         variant="outlined"
         className="nav-search"
         select
+        value={selectedUser}
+        onChange={handleUserSelect}
       >
         {suggestions.map(name => (
           <MenuItem key={name} value={name}>

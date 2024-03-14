@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./form.css";
 import { useNavigate, useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const UpdateForm = () => {
   const [conspiracyTheory, setConspiracyTheory] = useState("");
@@ -10,6 +11,7 @@ const UpdateForm = () => {
   const [referenceImages, setReferenceImages] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+  const username=Cookies.get("username");
 
   useEffect(() => {
     axios.get("https://weird-conspiracy-theories.onrender.com/getdata/"+id)
@@ -21,6 +23,7 @@ const UpdateForm = () => {
         setSource(data.source);
         setReferenceImages(data.reference_images);
         console.log(data.created_by)
+
       })
       .catch(error => {
         console.error("Error fetching data:", error);
@@ -35,7 +38,8 @@ const UpdateForm = () => {
         conspiracy_theory: conspiracyTheory,
         description,
         source,
-        reference_images: referenceImages
+        reference_images: referenceImages,
+        created_by:username
       })
       .then(response => {
         console.log("Form submitted successfully:", response.data);

@@ -35,7 +35,7 @@ const Login = () => {
       .then((response) => {
         document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
-        
+        navigate('/')
       })
       .catch((err) => {
         console.log(err);
@@ -52,7 +52,7 @@ const Login = () => {
         console.log(response);
       })
     }
-    navigate('/')
+    
   };
   
   return (

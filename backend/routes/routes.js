@@ -79,6 +79,7 @@ router.put("/updatedata/:id", async (req, res) => {
       description: req.body.description,
       source: req.body.source,
       reference_images: req.body.reference_images,
+      created_by:req.body.created_by
     });
     res.json(updatedDoc);
   } catch (error) {

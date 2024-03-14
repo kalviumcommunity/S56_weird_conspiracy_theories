@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './Home.css';
 import Card from '../components/Card';
 
-const Home = () => {
+const Home = ({ selectedUser }) => {
   const [theories, setTheories] = useState([]);
   const [cards, setCards] = useState(false);
   const isLoggedIn = document.cookie.includes('username'); 
@@ -11,12 +11,13 @@ const Home = () => {
     fetch('https://weird-conspiracy-theories.onrender.com/getuser')
       .then(response => response.json())
       .then(data => {
-        setTheories(data);
+        const filteredTheories = selectedUser === 'All' ? data : data.filter(theory => theory.created_by === selectedUser);
+        setTheories(filteredTheories);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [selectedUser]);
 
   const handleClick = () => {
     setCards(true);
