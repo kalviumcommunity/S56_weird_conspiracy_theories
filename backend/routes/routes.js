@@ -18,7 +18,7 @@ router.get('/getuser', async(req, res) => {
 // get user info from USER DATABASE
 router.get("/userinfo",async(req,res)=>{
       const data = await UserModel.find({});
-      res.send(data);
+      res.json(data);
 })
 // post
 router.post("/createUser", async (req, res) => {

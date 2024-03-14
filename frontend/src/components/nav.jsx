@@ -18,8 +18,7 @@ const Nav = ({ onSelectUser }) => {
         const response = await fetch('https://weird-conspiracy-theories.onrender.com/userinfo');
         const data = await response.json();
         
-        const uniqueNames = ['All', ...new Set(data.map(user => user.created_by))];
-        setSuggestions(uniqueNames);
+        setSuggestions([{ username: 'All' }, ...data]); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -53,9 +52,9 @@ const Nav = ({ onSelectUser }) => {
         value={selectedUser}
         onChange={handleUserSelect}
       >
-        {suggestions.map(name => (
-          <MenuItem key={name} value={name}>
-            {name}
+        {suggestions.map((user, index) => (
+          <MenuItem key={index} value={user.username}>
+            {user.username}
           </MenuItem>
         ))}
       </TextField>
