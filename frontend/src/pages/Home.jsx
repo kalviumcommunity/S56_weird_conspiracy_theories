@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
 import Card from '../components/Card';
+import Loader from '../components/Loader';
 
 const Home = ({ selectedUser }) => {
   const [theories, setTheories] = useState([]);
+  const [loading, setLoading] = useState(true); 
   const [cards, setCards] = useState(false);
   const isLoggedIn = document.cookie.includes('username'); 
 
   useEffect(() => {
+    setLoading(true); 
     fetch('https://weird-conspiracy-theories.onrender.com/getuser')
       .then(response => response.json())
       .then(data => {
         const filteredTheories = selectedUser === 'All' ? data : data.filter(theory => theory.created_by === selectedUser);
         setTheories(filteredTheories);
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        setLoading(false); 
       });
   }, [selectedUser]);
 
@@ -32,19 +37,26 @@ const Home = ({ selectedUser }) => {
       {isLoggedIn && ( 
         <button className="button-55" role="button" onClick={handleClick}>Explore Now</button>
       )}
-      {cards && isLoggedIn && ( 
-        <div className="theory">
-          {theories.map((theory, index) => (
-            <Card
-              key={index}
-              theory={theory.conspiracy_theory}
-              description={theory.description}
-              source={theory.source}
-              img={theory.reference_images}
-              id={theory._id}
-            />
-          ))}
+
+      {loading ? (
+        <div className="loader-container">
+        <Loader type={"bars"} color={"#000000"}/>
         </div>
+      ) : (
+        cards && isLoggedIn && ( 
+          <div className="theory">
+            {theories.map((theory, index) => (
+              <Card
+                key={index}
+                theory={theory.conspiracy_theory}
+                description={theory.description}
+                source={theory.source}
+                img={theory.reference_images}
+                id={theory._id}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   );

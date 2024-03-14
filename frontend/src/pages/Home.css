@@ -71,3 +71,8 @@
   display: flex;
   flex-wrap: wrap;
 }
+.loader-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
