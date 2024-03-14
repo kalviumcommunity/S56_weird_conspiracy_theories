@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./form.css";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie'
 const Form = () => {
   const [conspiracyTheory, setConspiracyTheory] = useState("");
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
   const [referenceImages, setReferenceImages] = useState("");
   const navigate = useNavigate();
+  const username = Cookies.get("username")
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +19,8 @@ const Form = () => {
         conspiracy_theory: conspiracyTheory,
         description,
         source,
-        reference_images: referenceImages
+        reference_images: referenceImages,
+        created_by: username
       })
       .then(response => {
         console.log("Form submitted successfully:", response.data);

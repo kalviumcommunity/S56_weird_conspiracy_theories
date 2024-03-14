@@ -1,12 +1,31 @@
+import { useState, useEffect } from 'react';
 import logo from "../assets/logo.png";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 import "./nav.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const [suggestions, setSuggestions] = useState([]);
   const isLoggedIn = document.cookie.includes('username');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://weird-conspiracy-theories.onrender.com/getuser');
+        const data = await response.json();
+        // Extract unique names from the "created_by" field
+        const uniqueNames = ['All', ...new Set(data.map(user => user.created_by))];
+        setSuggestions(uniqueNames);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleLogout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -18,7 +37,20 @@ const Nav = () => {
     <div className="nav-container">
       <Link to={"/"}><img src={logo} alt="Logo" className="nav-logo" /></Link>
 
-      <TextField id="outlined-basic" label="Search any Conspiracy" variant="outlined" className="nav-search" />
+      <TextField
+        id="outlined-basic"
+        label="Search any user"
+        variant="outlined"
+        className="nav-search"
+        select
+      >
+        {suggestions.map(name => (
+          <MenuItem key={name} value={name}>
+            {name}
+          </MenuItem>
+        ))}
+      </TextField>
+
       {isLoggedIn ? ( 
         <Button onClick={handleLogout} variant="outlined" color="primary" className="nav-button">Logout</Button>
       ) : ( 

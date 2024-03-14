@@ -20,6 +20,7 @@ const UpdateForm = () => {
         setDescription(data.description);
         setSource(data.source);
         setReferenceImages(data.reference_images);
+        console.log(data.created_by)
       })
       .catch(error => {
         console.error("Error fetching data:", error);

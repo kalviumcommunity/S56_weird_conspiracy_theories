@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { validateEntry } = require("../validator.js")
 const jwt = require('jsonwebtoken');
+const {UserModel} = require("../User.js")
+
 require("dotenv").config()
 
 
@@ -35,7 +37,12 @@ router.post("/createUser", async (req, res) => {
     console.log(err);
   }
 });
+// username post req
+router.post("/addUser",(req, res) => {
 
+  UserModel.create(req.body).then((el) => res.json(el))
+  .catch(err => res.json(err));
+});
 // auth post req
 router.post('/auth', (req, res) => {
   let {username}=req.body;
