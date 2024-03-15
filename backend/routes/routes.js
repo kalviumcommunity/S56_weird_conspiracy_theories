@@ -3,9 +3,7 @@ const router = express.Router();
 const { validateEntry } = require("../validator.js")
 const jwt = require('jsonwebtoken');
 require("dotenv").config()
-
-
-const { consModel } = require('../models/user.js');
+const { consModel, UserModel } = require('../models/user.js');
 router.get('/get', (req, res) => {  
   res.json('GET request');
 });
@@ -17,6 +15,11 @@ router.get('/getuser', async(req, res) => {
   res.send(result)
  
 });
+// get user info from USER DATABASE
+router.get("/userinfo",async(req,res)=>{
+      const data = await UserModel.find({});
+      res.json(data);
+})
 // post
 router.post("/createUser", async (req, res) => {
   try {
@@ -35,7 +38,18 @@ router.post("/createUser", async (req, res) => {
     console.log(err);
   }
 });
-
+// username post req
+router.post("/addUser",(req, res) => {
+  const user = new UserModel(req.body);
+  user.save()
+  .then((result) => {
+    res.send(result);
+  })
+  .catch((err) => {
+    res.send(err);
+  }
+  );
+});
 // auth post req
 router.post('/auth', (req, res) => {
   let {username}=req.body;
@@ -66,6 +80,7 @@ router.put("/updatedata/:id", async (req, res) => {
       description: req.body.description,
       source: req.body.source,
       reference_images: req.body.reference_images,
+      created_by:req.body.created_by
     });
     res.json(updatedDoc);
   } catch (error) {

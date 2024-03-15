@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,25 +7,52 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://weird-conspiracy-theories.onrender.com/userinfo")
+      .then((res) => {
+       
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
+
   };
 
+  
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-
+  let userList=user.map((user)=> user.username);
   const handleLogin = () => {
     axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
       .then((response) => {
         document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
-        navigate('/');
+        navigate('/')
       })
       .catch((err) => {
         console.log(err);
       });
+
+      // post req for username db
+      if(userList.includes(username)){
+        console.log("user already exists");
+      }else{ 
+      axios.post("https://weird-conspiracy-theories.onrender.com/addUser",{
+        username:username
+      })
+      .then((response) => {
+        console.log(response);
+      })
+    }
+    
   };
   
   return (
