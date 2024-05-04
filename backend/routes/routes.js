@@ -18,7 +18,6 @@ router.delete('/delete', (req, res) => {
   res.json('DELETE request');
 });
 // error handling for 404 requests.
-
 router.use((req, res) => {
   res.status(404).json('404 Not Found');
 });
