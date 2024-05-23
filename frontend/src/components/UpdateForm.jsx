@@ -14,7 +14,7 @@ const UpdateForm = () => {
   const username=Cookies.get("username");
 
   useEffect(() => {
-    axios.get("https://weird-conspiracy-theories.onrender.com/getdata/"+id)
+    axios.get("http://localhost:3001/getdata/"+id)
       .then(response => {
         console.log(response)
         const data = response.data;
@@ -34,7 +34,7 @@ const UpdateForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("https://weird-conspiracy-theories.onrender.com/updatedata/"+id, {
+      .put("http://localhost:3001/updatedata/"+id, {
         conspiracy_theory: conspiracyTheory,
         description,
         source,

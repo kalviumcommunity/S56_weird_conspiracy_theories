@@ -9,6 +9,7 @@ const consSchema = mongoose.Schema({
 },versionKey=false);
 const userSchema=mongoose.Schema({
     username:String,
+    password:String,
 }, versionKey=false)
 const UserModel=mongoose.model("username-colls",userSchema)
 

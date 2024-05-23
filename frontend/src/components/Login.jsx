@@ -10,7 +10,7 @@ const Login = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
     axios
-      .get("https://weird-conspiracy-theories.onrender.com/userinfo")
+      .get("http://localhost:3001/userinfo")
       .then((res) => {
        
         setUser(res.data);
@@ -31,7 +31,7 @@ const Login = () => {
   };
   let userList=user.map((user)=> user.username);
   const handleLogin = () => {
-    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
+    axios.post("http://localhost:3001/login", {username, password})
       .then((response) => {
         document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
@@ -45,7 +45,7 @@ const Login = () => {
       if(userList.includes(username)){
         console.log("user already exists");
       }else{ 
-      axios.post("https://weird-conspiracy-theories.onrender.com/addUser",{
+      axios.post("http://localhost:3001/addUser",{
         username:username
       })
       .then((response) => {

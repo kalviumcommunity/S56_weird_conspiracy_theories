@@ -15,7 +15,7 @@ const Nav = ({ onSelectUser }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://weird-conspiracy-theories.onrender.com/userinfo');
+        const response = await fetch('http://localhost:3001/userinfo');
         const data = await response.json();
         
         setSuggestions([{ username: 'All' }, ...data]); 
@@ -70,3 +70,4 @@ const Nav = ({ onSelectUser }) => {
 }
 
 export default Nav;
+
