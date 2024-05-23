@@ -1,4 +1,4 @@
-Link for the deployed render website: http://localhost:3001/
+Link for the deployed render website: https://gigx.onrender.com/
 
 Link for Front-End Deploy: https://s56-weird-conspiracy-theory.netlify.app/
 

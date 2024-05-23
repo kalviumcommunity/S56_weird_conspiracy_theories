@@ -14,7 +14,7 @@ const UpdateForm = () => {
   const username=Cookies.get("username");
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getdata/"+id)
+    axios.get("https://gigx.onrender.com/getdata/"+id)
       .then(response => {
         console.log(response)
         const data = response.data;
@@ -34,7 +34,7 @@ const UpdateForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3001/updatedata/"+id, {
+      .put("https://gigx.onrender.com/updatedata/"+id, {
         conspiracy_theory: conspiracyTheory,
         description,
         source,

@@ -15,7 +15,7 @@ const Nav = ({ onSelectUser }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/userinfo');
+        const response = await fetch('https://gigx.onrender.com/userinfo');
         const data = await response.json();
         
         setSuggestions([{ username: 'All' }, ...data]); 
