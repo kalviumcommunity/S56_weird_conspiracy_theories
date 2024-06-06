@@ -7,7 +7,7 @@ const Card = ({ theory, description, source, img, id }) => {
   const [display, setDislay] = useState(false);
 
   const handleDelete = (id) => {
-    axios.delete("https://gigx.onrender.com/delete/" + id)
+    axios.delete("http://localhost:3001/delete/" + id)
       .then(res => {
         console.log(res);
         setDislay(true); 

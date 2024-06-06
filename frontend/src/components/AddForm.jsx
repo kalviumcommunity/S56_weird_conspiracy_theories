@@ -15,7 +15,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://gigx.onrender.com/createUser", {
+      .post("http://localhost:3001/createUser", {
         conspiracy_theory: conspiracyTheory,
         description,
         source,

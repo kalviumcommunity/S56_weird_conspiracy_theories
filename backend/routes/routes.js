@@ -92,6 +92,7 @@ router.post("/login", async (req, res) => {
     }
   } catch (error) {
     res.status(500).json(error);
+    console.error('Error logging in:', error);
   }
 });
 // logout endpoint clear cookies
