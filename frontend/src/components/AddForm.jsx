@@ -15,7 +15,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/createUser", {
+      .post("https://weird-conspiracy-theories.onrender.com/createUser", {
         conspiracy_theory: conspiracyTheory,
         description,
         source,
