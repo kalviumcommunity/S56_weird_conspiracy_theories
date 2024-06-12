@@ -11,7 +11,7 @@ const Home = ({ selectedUser }) => {
 
   useEffect(() => {
     setLoading(true); 
-    fetch('https://gigx.onrender.com/getuser')
+    fetch('https://weird-conspiracy-theories.onrender.com/getuser')
       .then(response => response.json())
       .then(data => {
         const filteredTheories = selectedUser === 'All' ? data : data.filter(theory => theory.created_by === selectedUser);
