@@ -31,7 +31,7 @@ const Login = () => {
   };
   let userList=user.map((user)=> user.username);
   const handleLogin = () => {
-    axios.post("https://weird-conspiracy-theories.onrender.com/auth", {username, password})
+    axios.post("https://weird-conspiracy-theories.onrender.com/login", {username, password})
       .then((response) => {
         document.cookie = `token=${response.data}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;
         document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC; path=/`;

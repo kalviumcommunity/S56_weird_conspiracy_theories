@@ -70,6 +70,36 @@ router.get("/getdata/:id", async (req, res) => {
   
    
 });
+// get all username data
+router.get("/getdata", async (req, res) => {
+  let result = await UserModel.find({});
+  res.json(result);
+});
+// login endpoint
+router.post("/login", async (req, res) => {
+  try {
+    const { username } = req.body;
+    const user = await UserModel
+      .findOne
+      ({
+        username: username
+      });
+    if (user) {
+      res.json(user);
+    }
+    else {
+      res.status(404).json("User not found");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+    console.error('Error logging in:', error);
+  }
+});
+// logout endpoint clear cookies
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json("Logged out");
+});
 
 // update
 router.put("/updatedata/:id", async (req, res) => {
